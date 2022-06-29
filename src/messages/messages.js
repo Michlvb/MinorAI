@@ -1,0 +1,1 @@
+introstruction_msg = "Welcome to Veggie A.I.! \nYour best partner when it comes to finding the cheapest prices for vegetables🥕 and fruit🥝"
