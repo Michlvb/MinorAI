@@ -1,0 +1,23 @@
+name: minor
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python
+  - ipython
+  - ipykernel
+  - pillow
+  - tensorflow
+  - pandas
+  - matplotlib
+  - scikit-learn
+  - seaborn
+  - graphviz
+  - pydot
+  - imageio
+  - python-graphviz
+  - pydotplus
+  - nltk
+  - numpy
+  - imbalanced-learn
+  - opencv

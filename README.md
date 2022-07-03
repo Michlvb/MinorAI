@@ -3,7 +3,7 @@
 This is our AI project for the minor AI.
 
 To run the model and see the results:
-- Go to luca branch
+- Go to master OR luca branch
 - Clone the branch
 - Cd into VeggieAI/src/model and choose the MobileNetV2 folder
 - Open de final_model.ipynb notebook
