@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Modal, Pressable } from 'react-native';
 
 import * as tf from '@tensorflow/tfjs';
 import {cameraWithTensors} from '@tensorflow/tfjs-react-native';
@@ -17,6 +17,7 @@ export default function App() {
 const [isTfReady, setTf] = useState(false);
 const [predictionFound, setPredictionFound] = useState(false);
 const [hasPermission, setHasPermission] = useState(null);
+const [modalVisible, setModalVisible] = useState(true);
 
 const modelJSON    = require("./models/model.json")
 // const modelWeights = require("./models/group1-shard1of3.bin")
@@ -91,6 +92,29 @@ const renderView = () => {
               onReady={(imageAsTensors) => handleCameraStream(imageAsTensors)}
               autorender={true}
               />
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                  Alert.alert("Modal has been closed.");
+                  setModalVisible(!modalVisible);
+                }}
+              >
+                <View style={styles.centeredView}>
+                  <View style={styles.modalView}>
+                    <Text style={styles.modalText}>Welcome to Veggie A.I.!</Text>
+                    <Text style={styles.modalText}>Your partner when it comes to finding the cheapest prices for vegetables🥕 and fruit🥝</Text>
+                    <Text style={styles.modalText}>Point your camera at the product and find out where you can get it for cheap!</Text>
+                    <Pressable
+                      style={[styles.button, styles.buttonClose]}
+                      onPress={() => setModalVisible(!modalVisible)}
+                    >
+                      <Text style={styles.textStyle}>Close</Text>
+                    </Pressable>
+                  </View>
+                </View>
+              </Modal>
               <Text style={styles.legendTextField}>Checl</Text>
           </View>
     }
@@ -125,6 +149,12 @@ const styles = StyleSheet.create({
     padding: 5,
     paddingTop: 25
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
   cameraView: {
     display: 'flex',
     flex:1,
@@ -140,6 +170,42 @@ const styles = StyleSheet.create({
     zIndex: 1,
     borderWidth: 0,
     borderRadius: 0,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    marginTop: 30
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
   },
   inputAndroid: {
     fontSize: 16,
